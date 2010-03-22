@@ -8,7 +8,7 @@
  * @see  http://docs.kohanaphp.com/features/localization#time
  * @see  http://php.net/timezones
  */
-date_default_timezone_set('America/Chicago');
+date_default_timezone_set('Asia/ShangHai');
 
 /**
  * Enable the Kohana auto-loader.
@@ -33,7 +33,7 @@ spl_autoload_register(array('Kohana', 'auto_load'));
  * - boolean  profile     enable or disable internal profiling               TRUE
  * - boolean  caching     enable or disable internal caching                 FALSE
  */
-Kohana::init(array('base_url' => '/kohana/'));
+Kohana::init(array('base_url' => '/mycms/','index_file'=>''));
 
 /**
  * Attach the file write to logging. Multiple writers are supported.
@@ -49,6 +49,7 @@ Kohana::$config->attach(new Kohana_Config_File);
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
+           'cms'        => MODPATH.'cms',
 	// 'auth'       => MODPATH.'auth',       // Basic authentication
 	// 'codebench'  => MODPATH.'codebench',  // Benchmarking tool
 	// 'database'   => MODPATH.'database',   // Database access
