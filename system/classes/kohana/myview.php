@@ -9,7 +9,7 @@
  * @copyright  (c) 2008-2009 Kohana Team
  * @license    http://kohanaphp.com/license.html
  */
-class Kohana_View {
+class Kohana_Myview {
 
 	// Array of global variables
 	protected static $_global_data = array();
@@ -21,9 +21,9 @@ class Kohana_View {
 	 * @param   array   array of values
 	 * @return  View
 	 */
-	public static function factory($file = NULL, array $data = NULL)
+	public static function factory($dir= NULL,$file = NULL, array $data = NULL)
 	{
-		return new View($file, $data);
+		return new View($dir, $file, $data);
 	}
 
 	/**
@@ -108,11 +108,11 @@ class Kohana_View {
 	 * @param   array   array of values
 	 * @return  void
 	 */
-	public function __construct($file = NULL, array $data = NULL)
+	public function __construct($dir=NULL,$file = NULL, array $data = NULL)
 	{
 		if ($file !== NULL)
 		{
-			$this->set_filename($file);
+			$this->set_filename($dir,$file);
 		}
 
 		if ( $data !== NULL)
@@ -208,21 +208,13 @@ class Kohana_View {
 	 * @param   string  filename
 	 * @return  View
 	 */
-	public function set_filename($file)
+	public function set_filename($dir,$file)
 	{
-		if (($path = Kohana::find_file('views', $file)) === FALSE)
-		{
-                    $this->_file = realpath('./').DIRECTORY_SEPARATOR.$file.EXT;//$path;
-                    /*throw new Kohana_View_Exception('The requested view :file could not be found', array(
-				':file' => $file,
-			));*/
-		}
-                else
-                  $this->_file= $path;
-        	// Store the file path locally        
+		$path = Kohana::find_file($dir,$file);
+		// Store the file path locally
+		$this->_file = $path;
 		return $this;
 	}
-
 
 	/**
 	 * Assigns a variable by name. Assigned values will be available as a
@@ -288,7 +280,7 @@ class Kohana_View {
 	 * @param    view filename
 	 * @return   string
 	 */
-	public function render($file = NULL)
+	public function render($dir= NULL,$file = NULL)
 	{
 		if ($file !== NULL)
 		{
