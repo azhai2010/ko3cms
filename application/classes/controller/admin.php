@@ -6,7 +6,7 @@ class Controller_Admin extends Controller {
 
         public function before()
         {
-            $this->template = View::factory('media/themes/admin/mods/index');
+            $this->template = View::factory('media/themes/admin/template/index');
             $this->template->csspath ='media/themes/admin/';
             $this->template->post_list_as_div = '';
             $this->template->smart_title =  cms::factory()->smart_title();

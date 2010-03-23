@@ -212,7 +212,7 @@ class Kohana_View {
 	{
 		if (($path = Kohana::find_file('views', $file)) === FALSE)
 		{
-                    $this->_file = realpath('./').DIRECTORY_SEPARATOR.$file.EXT;//$path;
+                    $this->_file = DOCROOT.$file.EXT;//$path;
                     /*throw new Kohana_View_Exception('The requested view :file could not be found', array(
 				':file' => $file,
 			));*/
