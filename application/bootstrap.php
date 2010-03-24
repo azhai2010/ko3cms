@@ -33,7 +33,7 @@ spl_autoload_register(array('Kohana', 'auto_load'));
  * - boolean  profile     enable or disable internal profiling               TRUE
  * - boolean  caching     enable or disable internal caching                 FALSE
  */
-Kohana::init(array('base_url' => '/mycms/','index_file'=>''));
+Kohana::init(array('base_url' => 'http://localhost:8080/mycms/','index_file'=>''));
 
 /**
  * Attach the file write to logging. Multiple writers are supported.
@@ -65,9 +65,10 @@ Kohana::modules(array(
  */
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
-		'controller' => 'welcome',
+		'controller' => 'admin',
 		'action'     => 'index',
 	));
+
 
 /**
  * Execute the main request. A source of the URI can be passed, eg: $_SERVER['PATH_INFO'].
